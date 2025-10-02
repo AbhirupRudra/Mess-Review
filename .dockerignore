@@ -1,0 +1,16 @@
+# Ignore git files
+.git
+.gitignore
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore the service account key. This should be mounted at runtime.
+serviceAccountKey.json
+
+# Ignore Dockerfile and .dockerignore themselves
+Dockerfile
+.dockerignore

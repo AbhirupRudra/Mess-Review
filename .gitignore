@@ -1,1 +1,24 @@
-ServiceAccountKey.json
+# Ignore the service account key file
+serviceAccountKey.json
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environment folders
+venv/
+.env/
+env/
+ENV/
+
+# Ignore IDE/editor-specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
