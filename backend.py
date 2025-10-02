@@ -6,9 +6,11 @@ from firebase_admin import credentials, firestore
 import os
 
 app = Flask(__name__, static_folder="static")
-ADMIN_PASSWORD = "mess123"
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
 
 # ---------- Firebase Setup ----------
+# The service account key is expected to be in a file named "serviceAccountKey.json"
+# mounted into the container.
 if not firebase_admin._apps:
     cred = credentials.Certificate("serviceAccountKey.json")
     firebase_admin.initialize_app(cred)
@@ -77,4 +79,7 @@ def get_reviews():
 
 # ---------- Run ----------
 if __name__ == "__main__":
+    # This is for local development.
+    # In production, use a proper WSGI server like gunicorn.
+    # Example: gunicorn --bind 0.0.0.0:8000 backend:app
     app.run(debug=True, host="0.0.0.0", port=5000)
