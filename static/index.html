@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mess Food Review</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>🍴 Mess Food Review</h1>
+    <p class="subtitle">Rate your current meal (Anonymous). See the week's menu on the right 👇</p>
+
+    <div class="dashboard">
+      <!-- Left: Current meal review -->
+      <div class="review-section">
+        <div class="meal hidden" id="mealSection">
+          <h2 id="mealTitle"></h2>
+
+          <!-- Overall meal rating -->
+          <p><strong>Overall Rating</strong></p>
+          <div class="rating" id="overallRating">
+            <span data-value="5">★</span>
+            <span data-value="4">★</span>
+            <span data-value="3">★</span>
+            <span data-value="2">★</span>
+            <span data-value="1">★</span>
+          </div>
+          <textarea id="overallFeedback" placeholder="Overall feedback (optional)..."></textarea>
+
+          <!-- Menu items -->
+          <div id="menuItems"></div>
+        </div>
+
+        <!-- Submit button -->
+        <button id="submitBtn" class="hidden">Submit Review</button>
+        <p id="thankyou" class="hidden">✅ Thank you for your review!</p>
+        <p id="nomsg" class="hidden">⚠️ Reviews are only open during meal times.</p>
+      </div>
+
+      <!-- Right: Week menu -->
+      <div class="week-menu-section" id="fullWeekMenu">
+        <h2>📅 Week Menu (Read-only)</h2>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
