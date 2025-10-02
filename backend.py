@@ -12,8 +12,10 @@ ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
 # The service account key is expected to be in a file named "serviceAccountKey.json"
 # mounted into the container.
 if not firebase_admin._apps:
-    cred = credentials.Certificate("serviceAccountKey.json")
+    cred_dict = json.loads(os.environ["FIREBASE_KEY"])
+    cred = credentials.Certificate(cred_dict)
     firebase_admin.initialize_app(cred)
+
 db = firestore.client()
 
 # ---------- Admin Auth ----------
