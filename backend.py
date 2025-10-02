@@ -3,7 +3,7 @@ from functools import wraps
 from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore
-import os
+import os, json
 
 app = Flask(__name__, static_folder="static")
 ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
