@@ -31,9 +31,21 @@ def admin_required(f):
         return f(*args, **kwargs)
     return decorated
 
-# ---------- API Routes ----------
+# ---------- Routes ----------
+@app.route("/")
+def serve_student():
+    return send_from_directory("static", "index.html")
+
+@app.route("/admin")
+def serve_admin():
+    return send_from_directory("static", "admin.html")
+
+@app.route("/<path:path>")
+def serve_static(path):
+    return send_from_directory("static", path)
+
 # Submit review (student)
-@app.route("/api/submit_review", methods=["POST"])
+@app.route("/submit_review", methods=["POST"])
 def submit_review():
     data = request.json
     required = ["day", "meal", "overallRating", "items"]
@@ -55,7 +67,7 @@ def submit_review():
     return jsonify({"message": "Review submitted successfully!"})
 
 # Get reviews for specific day
-@app.route("/api/get_reviews", methods=["GET"])
+@app.route("/get_reviews", methods=["GET"])
 @admin_required
 def get_reviews():
     date = request.args.get("date")
@@ -70,5 +82,9 @@ def get_reviews():
         reviews.append(r)
     return jsonify(reviews)
 
-# This file is intended for Vercel's serverless environment.
-# The Flask app object is automatically picked up by the WSGI server.
+# ---------- Run ----------
+if __name__ == "__main__":
+    # This is for local development.
+    # In production, use a proper WSGI server like gunicorn.
+    # Example: gunicorn --bind 0.0.0.0:8000 backend:app
+    app.run(debug=True, host="0.0.0.0", port=5000)
