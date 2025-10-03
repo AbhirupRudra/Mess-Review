@@ -34,7 +34,7 @@ async function fetchReviews() {
   if (!date) return;
 
   try {
-    const res = await fetch(`/get_reviews?date=${date}`, {
+    const res = await fetch(`/api/get_reviews?date=${date}`, {
       headers: { Authorization: `Bearer ${ADMIN_PASSWORD}` }
     });
     const data = await res.json();
