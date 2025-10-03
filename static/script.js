@@ -8,8 +8,6 @@ if (!deviceId) {
 
 let currentMeal = null;
 let ratings = { overall: 0, items: {} };
-const BACKEND_URL = "http://127.0.0.1:5000"; // backend
-
 // Meal schedule in minutes
 const mealSchedule = {
   Breakfast: { start: 420, end: 570 },
@@ -191,7 +189,7 @@ document.getElementById("submitBtn").addEventListener("click", async function ()
   });
 
   try {
-    const response = await fetch(`${BACKEND_URL}/submit_review`, {
+    const response = await fetch(`/api/submit_review`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)
