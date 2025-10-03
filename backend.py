@@ -4,15 +4,18 @@ from datetime import datetime
 import firebase_admin
 from firebase_admin import credentials, firestore
 import os, json
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = Flask(__name__, static_folder="static")
-ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD")
+ADMIN_PASSWORD = os.getenv("ADMIN_PASS")
 
 # ---------- Firebase Setup ----------
 # The service account key is expected to be in a file named "serviceAccountKey.json"
 # mounted into the container.
 if not firebase_admin._apps:
-    cred_dict = json.loads(os.environ["FIREBASE_KEY"])
+    cred_dict = json.loads(os.getenv("FIREBASE_KEY"))
     cred = credentials.Certificate(cred_dict)
     firebase_admin.initialize_app(cred)
 
